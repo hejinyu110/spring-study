@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address" class="com.he.pojo.Address"/>
+    <!--各种类型的属性注入-->
+    <bean id="student" class="com.he.pojo.Student" >
+        <!--普通值注入 直接使用 property 设置-->
+        <property name="name" value="hejinyu"/>
+        <!--引用注入 引用其他的属性类-->
+        <property name="address" ref="address"/>
+        <!--数组 注入-->
+        <property name="books">
+            <array>
+                <value>我是小标1</value>
+                <value>我是小标2</value>
+                <value>我是小标3</value>
+            </array>
+        </property>
+        <!--list 注入-->
+        <property name="hobbys">
+            <list>
+                <value>我是小标1</value>
+                <value>我是小标2</value>
+                <value>我是小标3</value>
+            </list>
+        </property>
+        <!--map 注入-->
+        <property name="card">
+            <map>
+               <entry key="身份证" value="111111"></entry>
+                <entry key="银行卡" value="2222"></entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

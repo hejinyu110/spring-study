@@ -3,6 +3,10 @@ package com.he.pojo;
 public class User {
     public String str;
 
+    public User(String str) {
+        this.str = str;
+    }
+
     public String getStr() {
         return str;
     }

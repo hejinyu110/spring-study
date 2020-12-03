@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--可用引入多个文件 beans 使用的时候直接加载一个 总的就行-->
+    <import resource="beans.xml"/>
+    <import resource="beansstudent.xml"/>
+</beans>

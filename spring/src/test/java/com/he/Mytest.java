@@ -1,7 +1,9 @@
 package com.he;
 
+import com.he.pojo.Student;
 import com.he.pojo.User;
 import com.he.service.UserServiceImpl;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,5 +14,11 @@ public class Mytest {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         UserServiceImpl userServiceImpl = (UserServiceImpl) context.getBean("UserServiceImpl");
         userServiceImpl.getUser();
+    }
+    @Test
+    public void test(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Student student = (Student) context.getBean("student");
+        System.out.println(student.getName());
     }
 }
