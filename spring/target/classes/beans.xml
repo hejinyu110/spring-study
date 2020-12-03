@@ -8,5 +8,13 @@
        <property name="str" value="hello" />
     </bean>
 
-
+    <bean id="mysqlImpl" class="com.he.dao.UserDaoMysqlImpl"/>
+    <bean id="oracleImpl" class="com.he.dao.UserDaoOracleImpl"/>
+    <bean id="sqlserverImpl" class="com.he.dao.UserDaoSqlserverImpl"/>
+    <bean id="UserServiceImpl" class="com.he.service.UserServiceImpl">
+        <!-- ref 引用 spring容器中自动创建的对象
+            value 具体的值 基本的数据类型
+        -->
+        <property name="userDao" ref="sqlserverImpl"/>
+    </bean>
 </beans>
