@@ -4,13 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--bean 在被解析的时候回自动执行构造方法，同时 自动 实例化一个对象-->
     <!--name 也是别名， 逗号 空格分号都支持，可用多个名称-->
-    <bean id="user" class="com.he.pojo.User" name="user1,user2">
-        <!--属性赋值 不需要构造方法-->
-       <!--<property name="str" value="hello" />-->
-        <!--通过参数名称赋值 需要有 对应参数的构造放啊发-->
+    <!-- @Component 自动装配类-->
+    <!--<bean id="user" class="com.he.pojo.User" name="user1,user2">
+        &lt;!&ndash;属性赋值 不需要构造方法&ndash;&gt;
+       &lt;!&ndash;<property name="str" value="hello" />&ndash;&gt;
+        &lt;!&ndash;通过参数名称赋值 需要有 对应参数的构造放啊发&ndash;&gt;
         <constructor-arg name="str" value="hello"/>
-    </bean>
+    </bean>-->
 
     <bean id="mysqlImpl" class="com.he.dao.UserDaoMysqlImpl"/>
     <bean id="oracleImpl" class="com.he.dao.UserDaoOracleImpl"/>
@@ -22,5 +24,5 @@
         <property name="userDao" ref="sqlserverImpl"/>
     </bean>
     <!--别名 原名称可用，用新的名称也可用-->
-    <alias name="user" alias="userNew"/>
+    <!--<alias name="user" alias="userNew"/>-->
 </beans>

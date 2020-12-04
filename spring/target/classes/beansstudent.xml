@@ -1,12 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--aop 支持
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/aop
+    https://www.springframework.org/schema/beans/spring-aop.xsd
+    -->
+    <!--
+    支持注解自动装配注入
+        xmlns:context="http://www.springframework.org/schema/context"
+
+        xsi:schemaLocation="http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd"
+
+    -->
+    <!--自动扫描这个包下面的注解就会自动生效-->
+    <context:component-scan base-package="com.he.pojo"/>
+    <!--开启注解的支持 很重要-->
+    <context:annotation-config/>
+    <!-- scope="singleton"  （默认就是单例）单例模式全部唯一  scope="prototype" 原型模式 每次都不一样-->
+    <bean id="address" class="com.he.pojo.Address" scope="prototype"/>
     <!--各种类型的属性注入-->
-    <bean id="student" class="com.he.pojo.Student" >
+    <!--autowire 自动装配 按照名字（byName）自动去当前beans 中获取到对应名字的属性
+    byName 会自动按照  class 类型自动装载
+    -->
+    <bean id="student" class="com.he.pojo.Student" autowire="byName">
+        <!--普通值注入 直接使用 property 设置-->
         <property name="name" value="hejinyu"/>
+        <!--引用注入 引用其他的属性类 显性 引入类型  autowire 隐形 自动装配-->
+        <property name="address" ref="address"/>
+        <!--数组 注入-->
+        <property name="books">
+            <array>
+                <value>我是小标1</value>
+                <value>我是小标2</value>
+                <value>我是小标3</value>
+            </array>
+        </property>
+        <!--list 注入-->
+        <property name="hobbys">
+            <list>
+                <value>我是小标1</value>
+                <value>我是小标2</value>
+                <value>我是小标3</value>
+            </list>
+        </property>
+        <!--map 注入-->
+        <property name="card">
+            <map>
+               <entry key="身份证" value="111111"></entry>
+                <entry key="银行卡" value="2222"></entry>
+            </map>
+        </property>
     </bean>
 
 </beans>

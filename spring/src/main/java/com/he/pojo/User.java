@@ -1,5 +1,9 @@
 package com.he.pojo;
 
+import org.springframework.stereotype.Component;
+
+//等价于 <bean id="user" class="com.he.pojo.User" />
+@Component
 public class User {
     public String str;
 

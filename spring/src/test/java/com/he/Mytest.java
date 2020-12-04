@@ -21,4 +21,11 @@ public class Mytest {
         Student student = (Student) context.getBean("student");
         System.out.println(student.getName());
     }
+
+    @Test
+    public void test1(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        User user = (User) context.getBean("user",User.class);
+        System.out.println(user.getStr());
+    }
 }
