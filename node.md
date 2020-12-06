@@ -68,3 +68,7 @@ aop 实现 需要 新的包
 </dependency>
 
 ```
+
+aop 实现 个人理解 就是  beforeAction afterAction 事件 
+通过  aop:config 注册需要的列 事件类 
+ 然后进行绑定类的事件行为
