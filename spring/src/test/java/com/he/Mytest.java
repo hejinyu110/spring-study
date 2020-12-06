@@ -1,10 +1,13 @@
 package com.he;
 
+import com.he.config.AppConfig;
+import com.he.pojo.Hourse;
 import com.he.pojo.Student;
 import com.he.pojo.User;
 import com.he.service.UserServiceImpl;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Mytest {
@@ -27,5 +30,11 @@ public class Mytest {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         User user = (User) context.getBean("user",User.class);
         System.out.println(user.getStr());
+    }
+    @Test
+    public void testConfig(){
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        Hourse getHourse = (Hourse) context.getBean("getHourse");
+        System.out.println(getHourse.toString());
     }
 }

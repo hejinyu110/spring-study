@@ -10,7 +10,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void getUser(){
-        userDao.getUser();
+        System.out.println("获取用户对象");
     }
 
 }
