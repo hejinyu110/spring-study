@@ -10,12 +10,23 @@
     <bean id="afterLog" class="aop.log.AfterLog"/>
     <!--方式一使用原生的spiring api 实现-->
     <!--配置aop,需要导入 aop 约束-->
-    <aop:config>
-        <!--切入点 :expression 表达式 execution(需要执行的位置)-->
+   <!-- <aop:config>
+        &lt;!&ndash;切入点 :expression 表达式 execution(需要执行的位置)&ndash;&gt;  返回值，切换位置所在的类 可以是 com.he.* 下面所有的
         <aop:pointcut id="pintcut" expression="execution(* aop.service.UserServiceImpl.*(..))"/>
 
-        <!--执行环绕增加 实际就是定义切入点的前后事件切入类-->
+        &lt;!&ndash;执行环绕增加 实际就是定义切入点的前后事件切入类&ndash;&gt;
         <aop:advisor advice-ref="log" pointcut-ref="pintcut"/>
         <aop:advisor advice-ref="afterLog" pointcut-ref="pintcut"/>
+    </aop:config>-->
+
+    <!--方法二 自定义切面类 (事件类)-->
+    <bean id="diy" class="aop.log.DiyLog"/>
+    <aop:config>
+        <aop:aspect ref="diy">
+
+            <aop:pointcut id="userServiceImpl" expression="execution(* aop.service.UserServiceImpl.*(..))"/>
+            <aop:before method="before" pointcut-ref="userServiceImpl"/>
+            <aop:after method="after" pointcut-ref="userServiceImpl"/>
+        </aop:aspect>
     </aop:config>
 </beans>
