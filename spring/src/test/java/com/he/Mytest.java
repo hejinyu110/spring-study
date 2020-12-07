@@ -1,6 +1,7 @@
 package com.he;
 
 import com.he.config.AppConfig;
+import com.he.mapper.UserMapper;
 import com.he.pojo.Hourse;
 import com.he.pojo.Student;
 import com.he.pojo.User;
@@ -9,6 +10,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 public class Mytest {
     public static void main(String[] args) {
@@ -36,5 +39,17 @@ public class Mytest {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         Hourse getHourse = (Hourse) context.getBean("getHourse");
         System.out.println(getHourse.toString());
+    }
+
+    @Test
+    public void testMapper(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserMapper userMapper = context.getBean("userMapper", UserMapper.class);
+        List<User> users = userMapper.selectUser();
+        for (User user : users) {
+            System.out.println(user);
+
+        }
+
     }
 }

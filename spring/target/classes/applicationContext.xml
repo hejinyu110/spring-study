@@ -17,4 +17,6 @@
     <import resource="beansstudent.xml"/>
     <!--开启注解的支持 很重要-->
 
+    <import resource="spring-dao.xml"/>
+
 </beans>
