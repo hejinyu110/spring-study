@@ -2,10 +2,12 @@ package com.he.pojo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.*;
 
+@Component
 public class Student {
     private String name;
     /* 自动注解 自动会去加载类 但是必须在 xml 加入开启配置 require 说明这个值可以为null  否则必须给值 不给值会报空指针*/

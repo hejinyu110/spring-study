@@ -18,14 +18,14 @@ public class Mytest {
     @Test
     public void test(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        Student student = (Student) context.getBean("student");
+        Student student = (Student) context.getBean("Student");
         System.out.println(student.getName());
     }
 
     @Test
     public void test1(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        User user = (User) context.getBean("user",User.class);
+        User user = context.getBean("user",User.class);
         System.out.println(user.getStr());
     }
 }

@@ -19,7 +19,7 @@
 </beans>
 ```
 
-前提需要在 beans.xml 开启注解 
+前提需要在 beans.xml 开启注解  很重要
 ```xml
 <context:annotation-config/>
 ```
@@ -30,7 +30,9 @@
  
 
 类的上方  @Component 表示自动装配类了，不需要在xml 中 beans 中再注入
-
+@Controller 表示也被Spring 自动装配  同Component 只是专门放在Controller 文件中
+@Repository dao 文件中自动装配
+@Service service 文件中自动装配
 
 自动扫描这个包下面的注解就会自动生效
 ```xml
