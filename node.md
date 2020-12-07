@@ -38,3 +38,39 @@
 ```xml
     <context:component-scan base-package="com.he.pojo"/>
 ```
+
+最新的 方案都是使用  Javaconfig 使用注解
+里面定义方法实例化 类就是一个Bean
+
+```java
+ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+Hourse getHourse = (Hourse) context.getBean("getHourse");
+System.out.println(getHourse.toString());
+```
+
+
+Aop 面向切面编程 
+静态代理
+1.需要将所有的 service 实现类
+动态代理  proxy     InvocationHandler 代理实现类
+
+demo1 中实现的的是 动态代理
+
+
+
+aop 实现 需要 新的包 
+```xml
+
+<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.9.6</version>
+    <scope>runtime</scope>
+</dependency>
+
+```
+
+aop 实现 个人理解 就是  beforeAction afterAction 事件 
+通过  aop:config 注册需要的列 事件类 
+ 然后进行绑定类的事件行为
