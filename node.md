@@ -18,7 +18,7 @@
         https://www.springframework.org/schema/context/spring-context.xsd">
 </beans>
 ```
-
+http://mybatis.org/spring/zh/transactions.html#container
 前提需要在 beans.xml 开启注解  很重要
 ```xml
 <context:annotation-config/>
@@ -96,4 +96,35 @@ aop 实现 个人理解 就是  beforeAction afterAction 事件
         </resource>
     </resources>
 </build>
+```
+
+事务织入  aop
+```xml
+
+<!--开启 spring 事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg ref="dataSource" />
+    </bean>
+<!--结合 AOP 实现事务织入-->
+    <!-- 配置事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!--给那些方法配置事务-->
+        <!--配置事务传播特性 propagation-->
+        <tx:attributes>
+            <tx:method name="add" propagation="REQUIRED"/>
+            <tx:method name="delete" propagation="REQUIRED"/>
+            <tx:method name="update" propagation="REQUIRED"/><!-- propagation="REQUIRED"  表示开启事务，并且使用事务（多个事务操作）-->
+            <tx:method name="query" read-only="true"/> <!--所有的查询都是制度-->
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置事务的切入-->
+    <!--所有的 mapper.xml 全部使用事务
+     这样在写 代码逻辑的时候就不用使用 事务，因为在配置文件中已经全部使用了事务
+     -->
+    <aop:config>
+        <aop:pointcut id="txPoint" expression="execution(* com.he.mapper.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
+    </aop:config>
+
 ```
