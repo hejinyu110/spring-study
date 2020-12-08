@@ -50,6 +50,17 @@ public class Mytest {
             System.out.println(user);
 
         }
+    }
 
+    //直接使用用  extends SqlSessionDaoSupport 则就不需要再注册sqlSession
+    @Test
+    public void testMapper2(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserMapper userMapper = context.getBean("userMapper2", UserMapper.class);
+        List<User> users = userMapper.selectUser();
+        for (User user : users) {
+            System.out.println(user);
+
+        }
     }
 }

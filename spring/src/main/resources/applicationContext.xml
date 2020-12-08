@@ -18,5 +18,10 @@
     <!--开启注解的支持 很重要-->
 
     <import resource="spring-dao.xml"/>
-
+    <bean id="userMapper" class="com.he.mapper.UserMapperImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="userMapper2" class="com.he.mapper.UserMapperImpl2">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
 </beans>
