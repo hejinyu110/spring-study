@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--datasource 配置信息-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;characterEncode=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123"/>
+    </bean>
+    <!--sqlsessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--mybatis 配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:com/he/mapper/*.xml"/>
+    </bean>
+
+    <!--SqlSessionTemplate 就是之前用的  sqlSession-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <!--只能使用构造器注入 sqlSessionFactory 因为他没有set 方法-->
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+    <!--开启 spring 事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg ref="dataSource" />
+    </bean>
+
+    <!--结合 AOP 实现事务织入-->
+    <!-- 配置事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!--给那些方法配置事务-->
+        <!--配置事务传播特性 propagation-->
+        <tx:attributes>
+            <tx:method name="add" propagation="REQUIRED"/>
+            <tx:method name="delete" propagation="REQUIRED"/>
+            <tx:method name="update" propagation="REQUIRED"/><!-- propagation="REQUIRED"  表示开启事务，并且使用事务（多个事务操作）-->
+            <tx:method name="query" read-only="true"/> <!--所有的查询都是制度-->
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置事务的切入-->
+    <!--所有的 mapper.xml 全部使用事务
+     这样在写 代码逻辑的时候就不用使用 事务，因为在配置文件中已经全部使用了事务
+     -->
+    <aop:config>
+        <aop:pointcut id="txPoint" expression="execution(* com.he.mapper.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
+    </aop:config>
+
+</beans>

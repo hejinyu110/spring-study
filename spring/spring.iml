@@ -6,6 +6,8 @@
         <fileset id="fileset" name="AopConfig" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/aopConfig</file>
           <file>file://$MODULE_DIR$/src/main/resources/aop.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring-dao.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -32,5 +34,12 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.2.0.RELEASE" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.aspectj:aspectjweaver:1.9.6" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.22" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.11.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.1.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.1.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:2.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.10" level="project" />
   </component>
 </module>

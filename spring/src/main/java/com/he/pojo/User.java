@@ -8,6 +8,9 @@ public class User {
 
     @Value("abc") //相当于默认值 等价于 bean 中定义属性值
     public String str;
+    private int id;
+    private String name;
+    private String pwd;
 
     public User() {
     }
@@ -28,6 +31,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "str='" + str + '\'' +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
                 '}';
     }
 }
